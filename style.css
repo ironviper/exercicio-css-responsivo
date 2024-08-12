@@ -1,0 +1,181 @@
+* {
+    /* Reset */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    /* Define font for the whole website */
+    font-family: Roboto, 'sans-serif';
+
+
+}
+
+:root {
+    --blue: #3868D6;
+    --bg-color: #EEEEEE;
+
+    --number-of-columns: 1;
+
+    --min-height-text: 0em;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+
+/* Basic container. Adjusts for all devices. */
+.container {
+    width: 80%;
+    max-width: 1024px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Flex centered class */
+.flex-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Set all images to be constrained at 100% of its container width. */
+img {
+    max-width: 100%;
+    width: 100%;
+
+    margin-bottom: 2em;
+}
+
+/* Class to limit the text to two lines and truncate with ellipsis. */
+.two-lines-max{
+        /* Limit text with ellipsis after a certain number of lines. Allows multiple lines before truncating the text with ellipsis, but may not be widely compatible. */
+        display: -webkit-box;
+        line-clamp: 2;
+        -webkit-line-clamp: 2; /* Show only 2 lines */
+        -webkit-box-orient: vertical; /* Set box orientation to vertical */
+        overflow: hidden;
+        text-overflow: ellipsis;
+}
+
+
+header {
+    background-color: var(--blue);
+    color: #fff;
+
+    padding: 0.5em 0;
+
+    margin-bottom: 2rem;
+}
+header h1 {
+    width: min-content;
+    font-style: italic;
+}
+header nav a {
+    color: #fff;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    display: block;
+}
+
+section {
+    margin-top: 3rem;
+}
+
+/* Set the style for all <h2> as section titles. */ 
+h2 {
+    color: var(--blue);
+    font-style: italic;
+
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--blue);
+    margin-bottom: 2.5rem;
+}
+
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--number-of-columns), minmax(0, 1fr));
+
+    row-gap: 3rem;
+
+    column-gap: 1rem; /* Will have no effect with the --number-of-columns is 1. */
+
+}
+.product h3 {
+    margin-bottom: 1rem;
+
+    font-size: 1.5em;
+
+    /* Keep the height uniform to avoid the grid from getting unaligned, for products with descriptions up to two lines. */
+    line-height: 1.05em;
+    min-height: var(--min-height-text);
+}
+.product p {
+    margin-bottom: 1em;
+
+    /* Keep the height uniform to avoid the grid from getting unaligned, for products with descriptions up to two lines. */
+    min-height: var(--min-height-text); 
+
+    /* Limit text with ellipsis. This solution doesn't allow multiple lines before truncating the text with ellipsis, so it will always truncate in the end of the first line. */
+    /* overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; */
+}
+.product button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    background-color: var(--blue);
+    color: #fff;
+
+    font-weight: bold;
+    font-size: 1.125em;
+
+    padding: 0.4rem 0;
+
+    border-radius: 5px;
+
+    width: 100%;
+}
+
+
+/* Applies for Tablet and Desktop */
+@media screen and (min-width: 641px){
+    header h1 {
+        width: fit-content;
+    }
+    header nav a {
+        display: inline-block;
+
+        margin-left: 1em;
+    }
+
+    :root {
+        --min-height-text: 2.125em;
+    }
+}
+
+/* Applies for Tablet only */
+@media screen and (min-width: 641px) and (max-width: 1023px){
+    :root {
+        --number-of-columns: 2;
+    }
+}
+
+/* Applies for Desktop only */
+@media screen and (min-width: 1024px){
+    :root {
+        --number-of-columns: 4;
+    }
+
+    .desktop-about {
+        display: grid;
+        grid-template-columns: 40% 1fr;
+        column-gap: 2em;
+    }
+}
